@@ -10,10 +10,24 @@ npm install --save webworker-shim
 
 ## Usage
 
-```ts
-import webworkerShim from 'webworker-shim';
+Only WebWorkers encoded as a `data:text/javascript;charset=utf-8,*` string are supported.
 
-webworkerShim (); // result
+```ts
+import WebWorker from 'webworker-shim';
+
+const worker = new Worker ( `data:text/javascript;charset=utf-8,${encodeURIComponent (`
+  addEventListener ( 'message', event => {
+    if ( event.data === 'ping' ) {
+      postMessage ( 'pong' );
+    }
+  });
+`)}`);
+
+worker.addEventListener ( 'message', event => {
+  console.log ( event.data ); // => 'pong'
+});
+
+worker.postMessage ( 'ping' );
 ```
 
 ## License

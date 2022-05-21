@@ -1,0 +1,33 @@
+{
+  "name": "webworker-shim",
+  "repository": "github:fabiospampinato/webworker-shim",
+  "description": "A tiny shim for WebWorker (data URI only) that works in Node.",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/browser.js",
+  "types": "./dist/browser.d.ts",
+  "exports": {
+    "node": "./dist/node.js",
+    "default": "./dist/browser.js"
+  },
+  "scripts": {
+    "clean": "tsex clean",
+    "compile": "tsex compile",
+    "compile:watch": "tsex compile --watch",
+    "test": "tsex test",
+    "test:watch": "tsex test --watch",
+    "prepublishOnly": "npm run clean && npm run compile && npm run test"
+  },
+  "keywords": [
+    "worker",
+    "webworker",
+    "node",
+    "shim"
+  ],
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "fava": "^0.0.6",
+    "tsex": "^1.1.2",
+    "typescript": "^4.6.4"
+  }
+}

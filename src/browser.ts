@@ -1,0 +1,4 @@
+
+/* EXPORT */
+
+export default Worker;

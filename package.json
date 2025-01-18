@@ -3,7 +3,7 @@
   "repository": "github:fabiospampinato/webworker-shim",
   "description": "A tiny shim for WebWorker (data URI only) that works in Node.",
   "license": "MIT",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "main": "dist/browser.js",
   "types": "./dist/browser.d.ts",

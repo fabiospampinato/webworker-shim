@@ -5,7 +5,7 @@ A tiny shim for WebWorker (data URI only) that works in Node.
 ## Install
 
 ```sh
-npm install --save webworker-shim
+npm install webworker-shim
 ```
 
 ## Usage
@@ -14,6 +14,8 @@ Only WebWorkers encoded as a `data:text/javascript;charset=utf-8,*` string are s
 
 ```ts
 import WebWorker from 'webworker-shim';
+
+// Let's create a worker
 
 const worker = new Worker ( `data:text/javascript;charset=utf-8,${encodeURIComponent (`
   addEventListener ( 'message', event => {

@@ -2,6 +2,7 @@
   "name": "webworker-shim",
   "repository": "github:fabiospampinato/webworker-shim",
   "description": "A tiny shim for WebWorker (data URI only) that works in Node.",
+  "license": "MIT",
   "version": "1.1.0",
   "type": "module",
   "main": "dist/browser.js",
@@ -31,9 +32,9 @@
     "shim"
   ],
   "devDependencies": {
-    "@types/node": "^20.4.8",
-    "fava": "^0.2.1",
-    "tsex": "^3.0.1",
-    "typescript": "^5.1.6"
+    "@types/node": "^18.19.71",
+    "fava": "^0.3.4",
+    "tsex": "^4.0.2",
+    "typescript": "^5.7.3"
   }
 }

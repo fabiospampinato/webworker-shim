@@ -32,6 +32,12 @@ worker.addEventListener ( 'message', event => {
 worker.postMessage ( 'ping' );
 ```
 
+Alternatively you can just polyfill `gloalThis.Worker`, like this:
+
+```ts
+import 'webworker-shim/register';
+```
+
 ## License
 
 MIT © Fabio Spampinato

@@ -38,4 +38,34 @@ describe ( 'WebWorker Shim', it => {
 
   });
 
+  it ( 'supports receiving the exit code from a worker', t => {
+
+    return new Promise ( resolve => {
+
+      const worker = new Worker (`
+        data:text/javascript;charset=utf-8,${encodeURIComponent (`
+          addEventListener ( 'message', event => {
+            if ( event.data === 'exit' ) {
+              globalThis.process.exit ( 1 );
+            }
+          });
+        `)}
+      `);
+
+      worker.addEventListener ( 'close', event => {
+
+        worker.terminate ();
+
+        t.is ( event.data, 1 );
+
+        resolve ();
+
+      });
+
+      worker.postMessage ( 'exit' );
+
+    });
+
+  });
+
 });

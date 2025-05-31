@@ -42,8 +42,9 @@ class WorkerShim extends EventTarget {
       this.dispatchEvent ( error as any ); //TSC
     });
 
-    this.#worker.on ( 'exit', () => {
+    this.#worker.on ( 'exit', exitCode => {
       const event = new Event ( 'close' );
+      event['data'] = Number ( exitCode ?? 0 );
       this.dispatchEvent ( event );
     });
 

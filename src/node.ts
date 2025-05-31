@@ -17,6 +17,10 @@ class WorkerShim extends EventTarget {
 
     super ();
 
+    /* NORMALIZE */
+
+    url = url.trim ();
+
     /* CREATE */
 
     const prefix = 'data:text/javascript;charset=utf-8,';

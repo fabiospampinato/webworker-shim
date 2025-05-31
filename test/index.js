@@ -8,31 +8,31 @@ import Worker from '../dist/node.js';
 
 describe ( 'WebWorker Shim', it => {
 
-  it ( 'works', async t => {
+  it ( 'support messaging with a worker', t => {
 
     return new Promise ( resolve => {
 
-      const backend = `data:text/javascript;charset=utf-8,${encodeURIComponent (`
-        addEventListener ( 'message', event => {
-          if ( event.data === 'ping' ) {
-            postMessage ( 'pong' );
-          }
-        });
-      `)}`;
+      const worker = new Worker (`
+        data:text/javascript;charset=utf-8,${encodeURIComponent (`
+          addEventListener ( 'message', event => {
+            if ( event.data === 'ping' ) {
+              postMessage ( 'pong' );
+            }
+          });
+        `)}
+      `);
 
-      const frontend = new Worker ( backend );
+      worker.addEventListener ( 'message', event => {
 
-      frontend.addEventListener ( 'message', event => {
+        worker.terminate ();
 
         t.is ( event.data, 'pong' );
 
         resolve ();
 
-        frontend.terminate ();
-
       });
 
-      frontend.postMessage ( 'ping' );
+      worker.postMessage ( 'ping' );
 
     });
 

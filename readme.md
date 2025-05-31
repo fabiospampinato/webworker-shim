@@ -13,7 +13,7 @@ npm install webworker-shim
 Only WebWorkers encoded as a `data:text/javascript;charset=utf-8,*` string are supported.
 
 ```ts
-import WebWorker from 'webworker-shim';
+import Worker from 'webworker-shim';
 
 // Let's create a worker
 

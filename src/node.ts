@@ -56,15 +56,13 @@ class WorkerShim extends EventTarget {
 
   /* API */
 
-  postMessage ( message: any, transfer: Transferable[] ): void;
-  postMessage ( message: any, options?: StructuredSerializeOptions ): void;
-  postMessage ( message: any, data: any = message ): void {
+  postMessage ( message: any, transfer?: Transferable[] ): void {
 
-    const event = new Event ( message );
+    const event = new Event ( 'message' );
 
-    event['data'] = data;
+    event['data'] = message;
 
-    this.#worker.postMessage ( event );
+    this.#worker.postMessage ( event, transfer as any ); //FIXME: The types between Node.JS and the browser are actually different here :(
 
   }
 

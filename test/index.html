@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+  const worker = new Worker (`
+    data:text/javascript;charset=utf-8,${encodeURIComponent (`
+      addEventListener ( 'message', event => {
+        if ( event.data === 'ping' ) {
+          console.log ( 'ping received' );
+          postMessage ( 'pong' );
+        }
+      });
+    `)}
+  `);
+
+  worker.addEventListener ( 'message', event => {
+    worker.terminate ();
+    console.log ( 'pong received' );
+    console.log ( '✅' );
+  });
+
+  worker.postMessage ( 'ping' );
+</script>
